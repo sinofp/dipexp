@@ -49,8 +49,6 @@ while True:
     iter_times += 1
 
 newim = newim.astype(int)
-newim[newim > 255] = 255
-newim[newim < 0] = 0
 ax2.imshow(newim)
 
 colors = "bgrcmykw"
