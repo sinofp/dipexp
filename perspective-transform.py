@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # https://www.ece.rice.edu/~wakin/images/
 im = plt.imread("lena512.bmp")
 
-fig, (ax1, ax2) = plt.subplots(1, 2, sharex=True)
+fig, (ax1, ax2) = plt.subplots(1, 2, sharex=True, sharey=True)
 
 ax1.imshow(im, cmap="gray")
 ax2.imshow(np.zeros(im.shape), cmap="gray")
