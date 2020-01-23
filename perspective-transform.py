@@ -36,9 +36,7 @@ for X in range(newim.shape[0]):
         x, y, _ = (1 / xy1[2] * xy1).astype(int)
 
         # 防止越界
-        if x >= im.shape[0] or x < 0 or y >= im.shape[1] or y < 0:
-            newim[X, Y] = 0
-        else:
+        if 0 <= x < im.shape[0] and 0 <= y < im.shape[1]:
             newim[X, Y] = im[x, y]
 
 ax2.imshow(newim.T, cmap="gray")
