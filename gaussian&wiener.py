@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.fft import fft2, ifft2
 
-radius = 5
+kernel_size = 5
 # μ_filter 必 = 0
 σ_filter = 5
 
@@ -21,9 +21,10 @@ ax3.set_title("Original + Gaussian filter + Gaussian noise + Wiener filter")
 # 生成高斯核，最后要标准化所以前面×的1/(σ*sqrt(2π))省了
 gaussian_kernel = np.fromfunction(
     lambda x, y: np.exp(
-        -((x - radius // 2) ** 2 + (y - radius // 2) ** 2) / (2 * σ_filter ** 2)
+        -((x - kernel_size // 2) ** 2 + (y - kernel_size // 2) ** 2)
+        / (2 * σ_filter ** 2)
     ),
-    (radius, radius),
+    (kernel_size, kernel_size),
 )
 gaussian_kernel /= gaussian_kernel.sum()
 
