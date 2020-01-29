@@ -4,6 +4,13 @@ import networkx as nx
 import skimage.segmentation as seg
 from sklearn.cluster import spectral_clustering
 from skimage import color
+from sys import argv
+
+if (len(argv) < 3):
+    print("Need input filename and output filename.")
+    exit()
+
+inputfile, outputfile = argv[1:]
 
 fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
 
@@ -12,9 +19,7 @@ ax2.set_title("Original + Felzenszwalb")
 ax3.set_title("Original + Felzenszwalb + Spectral Clustering")
 ax4.set_title("Original + Felzenszwalb + Spectral Clustering (average color)")
 
-# from skimage import data
-# im = data.coins()
-im = plt.imread("lena512color.tiff")
+im = plt.imread(inputfile)
 
 ax1.imshow(im)
 
@@ -104,4 +109,5 @@ ax4.imshow(color.label2rgb(labels_final, im, kind="avg"))
 # ax1.set_title("Original + Spectral Clustering")
 # ax1.imshow(color.label2rgb(labels_sc1, smoothened_im, kind='avg'))
 
-fig.show()
+plt.imsave(outputfile, color.label2rgb(labels_final, im, kind="avg"))
+plt.show()
