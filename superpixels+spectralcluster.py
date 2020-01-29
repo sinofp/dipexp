@@ -90,14 +90,12 @@ ax3.imshow(seg.mark_boundaries(im, labels_final))
 
 ax4.imshow(color.label2rgb(labels_final, im, kind="avg"))
 
-## vanilla spectral cluster(very very slow):
+# # vanilla spectral cluster(very very slow):
 # from scipy.ndimage.filters import gaussian_filter
 # from sklearn.feature_extraction import image
 # smoothened_im = gaussian_filter(im, sigma=2)
 # graph = image.img_to_graph(smoothened_im)
-# beta = 10
-# eps = 1e-6
-# graph.data = np.exp(-beta * graph.data / graph.data.std()) + eps
+# graph.data = np.exp(-β * graph.data / graph.data.std())
 # labels_sc1 = spectral_clustering(
 #     graph,
 #     n_clusters=K,
