@@ -7,7 +7,7 @@ kernel_size = 5
 σ_filter = 5
 
 μ_noise = 0
-σ_noise = 1
+σ_noise = 5
 
 im = plt.imread("lena512.bmp")
 
@@ -45,7 +45,7 @@ Y = fft2(newim)
 
 # http://www.owlnet.rice.edu/~elec539/Projects99/BACH/proj2/wiener.html
 # ↓一种比较简单的估计原图功率谱的方法
-Ps = Y * np.conjugate(Y) / newim.shape[0] ** 2
+Ps = Y * np.conjugate(Y) / (newim.shape[0] * newim.shape[1])
 Pn = σ_noise ** 2  # 噪声功率谱是噪声的方差
 
 K = Pn / Ps
@@ -55,3 +55,4 @@ X = G * Y
 reim = np.real(ifft2(X))
 
 ax3.imshow(reim, cmap="gray")
+plt.show()
